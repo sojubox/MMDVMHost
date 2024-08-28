@@ -1,5 +1,6 @@
 /*
  *   Copyright (C) 2016 by Jonathan Naylor G4KLX
+ *   Copyright (C) 2018 by Bryan Biedenkapp <gatekeep@gmail.com>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,7 +32,11 @@ const unsigned int P25_TERM_FRAME_LENGTH_BITS  = P25_TERM_FRAME_LENGTH_BYTES * 8
 const unsigned int P25_TERMLC_FRAME_LENGTH_BYTES = 54U;
 const unsigned int P25_TERMLC_FRAME_LENGTH_BITS  = P25_TERMLC_FRAME_LENGTH_BYTES * 8U;
 
+const unsigned int P25_TSDU_FRAME_LENGTH_BYTES = 45U;
+const unsigned int P25_TSDU_FRAME_LENGTH_BITS = P25_TSDU_FRAME_LENGTH_BYTES * 8U; 
+
 const unsigned int P25_SYNC_LENGTH_BYTES = 6U;
+const unsigned int P25_SYNC_LENGTH_BITS  = P25_SYNC_LENGTH_BYTES * 8U;
 
 const unsigned int P25_NID_LENGTH_BYTES  = 8U;
 const unsigned int P25_NID_LENGTH_BITS   = P25_NID_LENGTH_BYTES * 8U;
@@ -39,10 +44,24 @@ const unsigned int P25_NID_LENGTH_BITS   = P25_NID_LENGTH_BYTES * 8U;
 const unsigned char P25_SYNC_BYTES[]      = {0x55U, 0x75U, 0xF5U, 0xFFU, 0x77U, 0xFFU};
 const unsigned char P25_SYNC_BYTES_LENGTH = 6U;
 
+const unsigned int  P25_MAX_PDU_COUNT = 10U;
+
+const unsigned int  P25_PDU_HEADER_LENGTH_BYTES      = 12U;
+const unsigned int  P25_PDU_CONFIRMED_LENGTH_BYTES   = 18U;
+const unsigned int  P25_PDU_UNCONFIRMED_LENGTH_BYTES = 12U;
+
+const unsigned int  P25_PDU_FEC_LENGTH_BYTES         = 24U;
+const unsigned int  P25_PDU_FEC_LENGTH_BITS          = P25_PDU_FEC_LENGTH_BYTES * 8U;
+
 const unsigned int  P25_MI_LENGTH_BYTES = 9U;
+
+const unsigned char P25_ALGO_UNENCRYPT = 0x80U;
 
 const unsigned char P25_LCF_GROUP   = 0x00U;
 const unsigned char P25_LCF_PRIVATE = 0x03U;
+
+const unsigned char P25_LCF_TSBK_CALL_ALERT  = 0x1FU;
+const unsigned char P25_LCF_TSBK_ACK_RSP_FNE = 0x20U;
 
 const unsigned int  P25_SS0_START    = 70U;
 const unsigned int  P25_SS1_START    = 71U;
@@ -51,6 +70,7 @@ const unsigned int  P25_SS_INCREMENT = 72U;
 const unsigned char P25_DUID_HEADER  = 0x00U;
 const unsigned char P25_DUID_TERM    = 0x03U;
 const unsigned char P25_DUID_LDU1    = 0x05U;
+const unsigned char P25_DUID_TSDU    = 0x07U;
 const unsigned char P25_DUID_LDU2    = 0x0AU;
 const unsigned char P25_DUID_PDU     = 0x0CU;
 const unsigned char P25_DUID_TERM_LC = 0x0FU;

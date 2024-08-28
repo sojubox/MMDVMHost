@@ -1,5 +1,6 @@
 /*
-*   Copyright (C) 2016,2017 by Jonathan Naylor G4KLX
+*   Copyright (C) 2016-2019 by Jonathan Naylor G4KLX
+*   Copyright (C) 2018 by Bryan Biedenkapp <gatekeep@gmail.com> N2PLL
 *
 *   This program is free software; you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@
 
 class CP25Control {
 public:
-	CP25Control(unsigned int nac, unsigned int id, bool selfOly, bool uidOverride, CP25Network* network, CDisplay* display, unsigned int timeout, bool duplex, CDMRLookup* lookup, CRSSIInterpolator* rssiMapper);
+	CP25Control(unsigned int nac, unsigned int id, bool selfOly, bool uidOverride, CP25Network* network, CDisplay* display, unsigned int timeout, bool duplex, CDMRLookup* lookup, bool remoteGateway, CRSSIInterpolator* rssiMapper);
 	~CP25Control();
 
 	bool writeModem(unsigned char* data, unsigned int len);
@@ -45,11 +46,16 @@ public:
 
 	void clock(unsigned int ms);
 
+	bool isBusy() const;
+
+	void enable(bool enabled);
+
 private:
 	unsigned int               m_nac;
 	unsigned int               m_id;
 	bool                       m_selfOnly;
 	bool                       m_uidOverride;
+	bool                       m_remoteGateway;
 	CP25Network*               m_network;
 	CDisplay*                  m_display;
 	bool                       m_duplex;
@@ -63,12 +69,16 @@ private:
 	unsigned int               m_rfFrames;
 	unsigned int               m_rfBits;
 	unsigned int               m_rfErrs;
+	// unsigned int            m_rfUndecodableLC;
 	unsigned int               m_netFrames;
 	unsigned int               m_netLost;
+	unsigned int               m_rfDataFrames;
 	CP25NID                    m_nid;
 	unsigned char              m_lastDUID;
 	CP25Audio                  m_audio;
 	CP25Data                   m_rfData;
+	// CP25Data                m_rfLastLDU1;
+	// CP25Data                m_rfLastLDU2;
 	CP25Data                   m_netData;
 	CP25LowSpeedData           m_rfLSD;
 	CP25LowSpeedData           m_netLSD;
@@ -76,12 +86,16 @@ private:
 	unsigned char*             m_netLDU2;
 	unsigned char*             m_lastIMBE;
 	unsigned char*             m_rfLDU;
+	unsigned char*             m_rfPDU;
+	unsigned int               m_rfPDUCount;
+	unsigned int               m_rfPDUBits;
 	CRSSIInterpolator*         m_rssiMapper;
 	unsigned char              m_rssi;
 	unsigned char              m_maxRSSI;
 	unsigned char              m_minRSSI;
 	unsigned int               m_aveRSSI;
 	unsigned int               m_rssiCount;
+	bool                       m_enabled;
 	FILE*                      m_fp;
 
 	void writeQueueRF(const unsigned char* data, unsigned int length);
@@ -89,6 +103,7 @@ private:
 	void writeNetwork(const unsigned char *data, unsigned char type, bool end);
 	void writeNetwork();
 
+	void setBusyBits(unsigned char* data, unsigned int ssOffset, bool b1, bool b2);
 	void addBusyBits(unsigned char* data, unsigned int length, bool b1, bool b2);
 
 	void checkNetLDU1();

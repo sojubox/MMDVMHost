@@ -1,5 +1,5 @@
 /*
- *   Copyright (C) 2009-2014,2016 by Jonathan Naylor G4KLX
+ *   Copyright (C) 2009-2014,2016,2019,2020,2021 by Jonathan Naylor G4KLX
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,11 +27,11 @@
 #include <cstring>
 
 const unsigned char REC62[] = {
-	0x62U, 0x02U, 0x02U, 0x0CU, 0x0BU, 0x1BU, 0x5AU, 0x1AU, 0x2BU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U,
-	0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x62U, 0x02U, 0x02U, 0x0CU, 0x0BU, 0x12U, 0x64U, 0x00U, 0x00U, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U,
+	0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 
 const unsigned char REC63[] = {
-	0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x7AU};
+	0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC64[] = {
 	0x64U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
@@ -43,23 +43,23 @@ const unsigned char REC66[] = {
 	0x66U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC67[] = {
-	0x67U, 0xC4U, 0x52U, 0x9BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x67U, 0xF0U, 0x9DU, 0x6AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC68[] = {
-	0x68U, 0x9AU, 0xECU, 0xBAU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x68U, 0x19U, 0xD4U, 0x26U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC69[] = {
-	0x69U, 0xB9U, 0xD8U, 0x16U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x69U, 0xE0U, 0xEBU, 0x7BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC6A[] = {
-	0x6AU, 0x00U, 0x00U, 0x06U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x6AU, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 
 const unsigned char REC6B[] = {
-	0x6BU, 0x02U, 0x02U, 0x0CU, 0x0BU, 0x1BU, 0x5AU, 0x1AU, 0x2BU, 0xACU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U,
-	0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x6BU, 0x02U, 0x02U, 0x0CU, 0x0BU, 0x12U, 0x64U, 0x00U, 0x00U, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U,
+	0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 
 const unsigned char REC6C[] = {
-	0x6CU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xD6U};
+	0x6CU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC6D[] = {
 	0x6DU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
@@ -80,23 +80,24 @@ const unsigned char REC72[] = {
 	0x72U, 0x9BU, 0xDCU, 0x75U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
 
 const unsigned char REC73[] = {
-	0x73U, 0x00U, 0x00U, 0x06U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U};
+	0x73U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 
 const unsigned char REC80[] = {
 	0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 
 const unsigned int BUFFER_LENGTH = 100U;
 
-CP25Network::CP25Network(const std::string& gatewayAddress, unsigned int gatewayPort, unsigned int localPort, bool debug) :
-m_socket(localPort),
-m_address(),
-m_port(gatewayPort),
+CP25Network::CP25Network(const std::string& gatewayAddress, unsigned short gatewayPort, const std::string& localAddress, unsigned short localPort, bool debug) :
+m_socket(localAddress, localPort),
+m_addr(),
+m_addrLen(0U),
 m_debug(debug),
 m_enabled(false),
 m_buffer(1000U, "P25 Network"),
 m_audio()
 {
-	m_address = CUDPSocket::lookup(gatewayAddress);
+	if (CUDPSocket::lookup(gatewayAddress, gatewayPort, m_addr, m_addrLen) != 0)
+		m_addrLen = 0U;
 }
 
 CP25Network::~CP25Network()
@@ -105,12 +106,14 @@ CP25Network::~CP25Network()
 
 bool CP25Network::open()
 {
+	if (m_addrLen == 0U) {
+		LogError("Unable to resolve the address of the P25 Gateway");
+		return false;
+	}
+
 	LogMessage("Opening P25 network connection");
 
-	if (m_address.s_addr == INADDR_NONE)
-		return false;
-
-	return m_socket.open();
+	return m_socket.open(m_addr);
 }
 
 bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, const CP25LowSpeedData& lsd, bool end)
@@ -126,7 +129,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 22U);
 
-	bool ret = m_socket.write(buffer, 22U, m_address, m_port);
+	bool ret = m_socket.write(buffer, 22U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -137,7 +140,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 14U);
 
-	ret = m_socket.write(buffer, 14U, m_address, m_port);
+	ret = m_socket.write(buffer, 14U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -150,7 +153,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -165,7 +168,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -180,7 +183,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -191,7 +194,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -202,7 +205,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -213,7 +216,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -226,7 +229,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU1 Sent", buffer, 16U);
 
-	ret = m_socket.write(buffer, 16U, m_address, m_port);
+	ret = m_socket.write(buffer, 16U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -234,7 +237,7 @@ bool CP25Network::writeLDU1(const unsigned char* ldu1, const CP25Data& control, 
 		if (m_debug)
 			CUtils::dump(1U, "P25 Network END Sent", REC80, 17U);
 
-		ret = m_socket.write(REC80, 17U, m_address, m_port);
+		ret = m_socket.write(REC80, 17U, m_addr, m_addrLen);
 		if (!ret)
 			return false;
 	}
@@ -255,7 +258,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 22U);
 
-	bool ret = m_socket.write(buffer, 22U, m_address, m_port);
+	bool ret = m_socket.write(buffer, 22U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -266,7 +269,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 14U);
 
-	ret = m_socket.write(buffer, 14U, m_address, m_port);
+	ret = m_socket.write(buffer, 14U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -283,7 +286,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -297,7 +300,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -311,7 +314,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -326,7 +329,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -337,7 +340,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -348,7 +351,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 17U);
 
-	ret = m_socket.write(buffer, 17U, m_address, m_port);
+	ret = m_socket.write(buffer, 17U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -361,7 +364,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 	if (m_debug)
 		CUtils::dump(1U, "P25 Network LDU2 Sent", buffer, 16U);
 
-	ret = m_socket.write(buffer, 16U, m_address, m_port);
+	ret = m_socket.write(buffer, 16U, m_addr, m_addrLen);
 	if (!ret)
 		return false;
 
@@ -369,7 +372,7 @@ bool CP25Network::writeLDU2(const unsigned char* ldu2, const CP25Data& control, 
 		if (m_debug)
 			CUtils::dump(1U, "P25 Network END Sent", REC80, 17U);
 
-		ret = m_socket.write(REC80, 17U, m_address, m_port);
+		ret = m_socket.write(REC80, 17U, m_addr, m_addrLen);
 		if (!ret)
 			return false;
 	}
@@ -381,15 +384,14 @@ void CP25Network::clock(unsigned int ms)
 {
 	unsigned char buffer[BUFFER_LENGTH];
 
-	in_addr address;
-	unsigned int port;
-	int length = m_socket.read(buffer, BUFFER_LENGTH, address, port);
+	sockaddr_storage address;
+	unsigned int addrLen;
+	int length = m_socket.read(buffer, BUFFER_LENGTH, address, addrLen);
 	if (length <= 0)
 		return;
 
-	// Check if the data is for us
-	if (m_address.s_addr != address.s_addr || m_port != port) {
-		LogMessage("P25 packet received from an invalid source, %08X != %08X and/or %u != %u", m_address.s_addr, address.s_addr, m_port, port);
+	if (!CUDPSocket::match(m_addr, address)) {
+		LogMessage("P25, packet received from an invalid source");
 		return;
 	}
 
@@ -422,6 +424,11 @@ unsigned int CP25Network::read(unsigned char* data, unsigned int length)
 	return c;
 }
 
+bool CP25Network::isConnected() const
+{
+	return (m_addrLen != 0);
+}
+
 void CP25Network::close()
 {
 	m_socket.close();
@@ -431,5 +438,8 @@ void CP25Network::close()
 
 void CP25Network::enable(bool enabled)
 {
+	if (!enabled && m_enabled)
+		m_buffer.clear();
+
 	m_enabled = enabled;
 }

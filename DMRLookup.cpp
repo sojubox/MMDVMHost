@@ -30,8 +30,8 @@ CThread(),
 m_filename(filename),
 m_reloadTime(reloadTime),
 m_table(),
-m_mutex(),
-m_stop(false)
+m_stop(false),
+m_reload(false)
 {
 }
 
@@ -41,12 +41,20 @@ CDMRLookup::~CDMRLookup()
 
 bool CDMRLookup::read()
 {
-	bool ret = load();
+	bool ret = m_table.load(m_filename);
 
 	if (m_reloadTime > 0U)
 		run();
 
 	return ret;
+}
+
+void CDMRLookup::reload()
+{
+	if (m_reloadTime == 0U)
+		m_table.load(m_filename);
+	else
+		m_reload = true;	
 }
 
 void CDMRLookup::entry()
@@ -60,9 +68,10 @@ void CDMRLookup::entry()
 		sleep(1000U);
 
 		timer.clock();
-		if (timer.hasExpired()) {
-			load();
+		if (timer.hasExpired() || m_reload) {
+			m_table.load(m_filename);
 			timer.start();
+			m_reload = false;
 		}
 	}
 
@@ -81,6 +90,27 @@ void CDMRLookup::stop()
 	wait();
 }
 
+void CDMRLookup::findWithName(unsigned int id, class CUserDBentry *entry)
+{
+	if (id == 0xFFFFFFU) {
+		entry->clear();
+		entry->set(keyCALLSIGN, "ALL");
+		return;
+	}
+
+	if (m_table.lookup(id, entry)) {
+		LogDebug("FindWithName =%s %s", entry->get(keyCALLSIGN).c_str(), entry->get(keyFIRST_NAME).c_str());
+	} else {
+		entry->clear();
+
+		char text[10U];
+		::snprintf(text, sizeof(text), "%u", id);
+		entry->set(keyCALLSIGN, text);
+	}
+
+	return;
+}
+
 std::string CDMRLookup::find(unsigned int id)
 {
 	std::string callsign;
@@ -88,71 +118,19 @@ std::string CDMRLookup::find(unsigned int id)
 	if (id == 0xFFFFFFU)
 		return std::string("ALL");
 
-	m_mutex.lock();
-
-	try {
-		callsign = m_table.at(id);
-	} catch (...) {
+	class CUserDBentry entry;
+	if (m_table.lookup(id, &entry)) {
+		callsign = entry.get(keyCALLSIGN);
+	} else {
 		char text[10U];
-		::sprintf(text, "%u", id);
+		::snprintf(text, sizeof(text), "%u", id);
 		callsign = std::string(text);
 	}
-
-	m_mutex.unlock();
 
 	return callsign;
 }
 
 bool CDMRLookup::exists(unsigned int id)
 {
-	m_mutex.lock();
-
-	bool found = m_table.count(id) == 1U;
-
-	m_mutex.unlock();
-
-	return found;
-}
-
-bool CDMRLookup::load()
-{
-	FILE* fp = ::fopen(m_filename.c_str(), "rt");
-	if (fp == NULL) {
-		LogWarning("Cannot open the Id lookup file - %s", m_filename.c_str());
-		return false;
-	}
-
-	m_mutex.lock();
-
-	// Remove the old entries
-	m_table.clear();
-
-	char buffer[100U];
-	while (::fgets(buffer, 100U, fp) != NULL) {
-		if (buffer[0U] == '#')
-			continue;
-
-		char* p1 = ::strtok(buffer, " \t\r\n");
-		char* p2 = ::strtok(NULL, " \t\r\n");
-
-		if (p1 != NULL && p2 != NULL) {
-			unsigned int id = (unsigned int)::atoi(p1);
-			for (char* p = p2; *p != 0x00U; p++)
-				*p = ::toupper(*p);
-
-			m_table[id] = std::string(p2);
-		}
-	}
-
-	m_mutex.unlock();
-
-	::fclose(fp);
-
-	size_t size = m_table.size();
-	if (size == 0U)
-		return false;
-
-	LogInfo("Loaded %u Ids to the callsign lookup table", size);
-
-	return true;
+	return m_table.lookup(id, NULL);
 }

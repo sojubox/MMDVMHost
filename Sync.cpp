@@ -1,5 +1,5 @@
 /*
- *   Copyright (C) 2015,2016 by Jonathan Naylor G4KLX
+ *   Copyright (C) 2015,2016,2018,2020,2021 by Jonathan Naylor G4KLX
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@
 #include "DMRDefines.h"
 #include "YSFDefines.h"
 #include "P25Defines.h"
+#include "NXDNDefines.h"
+#include "M17Defines.h"
 
 #include <cstdio>
 #include <cassert>
@@ -74,3 +76,33 @@ void CSync::addP25Sync(unsigned char* data)
 
 	::memcpy(data, P25_SYNC_BYTES, P25_SYNC_LENGTH_BYTES);
 }
+
+void CSync::addNXDNSync(unsigned char* data)
+{
+	assert(data != NULL);
+
+	for (unsigned int i = 0U; i < NXDN_FSW_BYTES_LENGTH; i++)
+		data[i] = (data[i] & ~NXDN_FSW_BYTES_MASK[i]) | NXDN_FSW_BYTES[i];
+}
+
+void CSync::addM17LinkSetupSync(unsigned char* data)
+{
+	assert(data != NULL);
+
+	::memcpy(data, M17_LINK_SETUP_SYNC_BYTES, M17_SYNC_LENGTH_BYTES);
+}
+
+void CSync::addM17StreamSync(unsigned char* data)
+{
+	assert(data != NULL);
+
+	::memcpy(data, M17_STREAM_SYNC_BYTES, M17_SYNC_LENGTH_BYTES);
+}
+
+void CSync::addM17EOTSync(unsigned char* data)
+{
+	assert(data != NULL);
+
+	::memcpy(data, M17_EOT_SYNC_BYTES, M17_SYNC_LENGTH_BYTES);
+}
+
